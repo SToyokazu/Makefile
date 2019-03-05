@@ -1,3 +1,7 @@
+#
+#MAIN_SRCがC++ならCファイルはextern "C"{}しろよ!!
+#
+
 #gcc関係
 CC = gcc $(CFLAGS)
 CFLAGS = -g
@@ -17,13 +21,20 @@ TARGET = $(MAIN_SRC:%$(suffix $(MAIN_SRC))=%)
 C_SRC = test_c.c
 C_OBJ = $(C_SRC:%$(suffix $(C_SRC))=%.o)
 
+#C++ソース
+CPP_SRC = test_cpp.cpp
+CPP_OBJ = $(CPP_SRC:%$(suffix $(CPP_SRC))=%.o)
+
 %.o:	%.c
-	$(CC) -c $<
+	$(CC) -c $< $(CLIBS)
+
+%.o:	%.cpp
+	$(CXX) -c $< $(CPPLIBS)
 
 all:	$(TARGET)
 
-$(TARGET) :	$(MAIN_OBJ) $(C_OBJ)
+$(TARGET) :	$(MAIN_OBJ) $(C_OBJ) $(CPP_OBJ)
 	$(CXX) -o $@ $^ $(CPPLIBS)
 
 clean:
-	-rm $(MAIN_OBJ) $(TARGET) $(C_OBJ) 
+	-rm $(MAIN_OBJ) $(TARGET) $(C_OBJ) $(CPP_OBJ) 
