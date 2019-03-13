@@ -8,7 +8,7 @@ CFLAGS = -g
 CLIBS = -lm
 
 #g++関係
-CXX = g++ $(CFLAGS)
+CXX = g++ $(CPPFLAGS)
 CPPFLAGS = -g
 CPPLIBS = -lm
 
