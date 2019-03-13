@@ -14,16 +14,16 @@ CPPLIBS = -lm
 
 #メインソース
 MAIN_SRC = main.cpp
-MAIN_OBJ = $(MAIN_SRC:%$(suffix $(MAIN_SRC))=%.o)
-TARGET = $(MAIN_SRC:%$(suffix $(MAIN_SRC))=%)
+MAIN_OBJ = $(MAIN_SRC:%.cpp=%.o)
+TARGET = $(MAIN_OBJ:%.o=%)
 
 #Cソース
 C_SRC = test_c.c
-C_OBJ = $(C_SRC:%$(suffix $(C_SRC))=%.o)
+C_OBJ = $(C_SRC:%.c=%.o)
 
 #C++ソース
 CPP_SRC = test_cpp.cpp
-CPP_OBJ = $(CPP_SRC:%$(suffix $(CPP_SRC))=%.o)
+CPP_OBJ = $(CPP_SRC:%.cpp=%.o)
 
 %.o:	%.c
 	$(CC) -c $< $(CLIBS)
