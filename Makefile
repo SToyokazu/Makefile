@@ -9,7 +9,7 @@ CLIBS = -lm
 
 #g++関係
 CXX = g++ $(CPPFLAGS)
-CPPFLAGS = -g
+CPPFLAGS = -std=c++14 -g
 CPPLIBS = -lm
 
 #メインソース
